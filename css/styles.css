@@ -1,0 +1,362 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #222;
+    background-color: #fff;
+    line-height: 1.6;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #fff;
+    padding: 1rem 1.5rem;
+
+    border-bottom: 1px solid #ddd;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-links {
+    display: none;
+    list-style: none;
+}
+
+.nav-links a {
+    font-size: 0.95rem;
+}
+
+section {
+    scroll-margin-top: 50px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+main {
+    padding-top: 3rem;
+}
+
+#hero {
+    height: 380px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+#hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("../images/vue-trouville.jpeg");
+    background-size: cover;
+    background-position: center;
+    filter: brightness(70%);
+}
+
+#hero>* {
+    position: relative;
+    z-index: 1;
+
+}
+
+#hero h1 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+#hero p {
+    max-width: 600px;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.btn {
+    display: inline-block;
+
+    padding: 0.9rem 1.5rem;
+
+    background-color: #fff;
+    color: #222;
+
+    border: 1px solid #fff;
+
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    background-color: transparent;
+    color: #fff;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+    padding: 5rem 1.5rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    margin-bottom: 2rem;
+
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+.section-intro {
+    max-width: 700px;
+    margin-bottom: 3rem;
+}
+
+
+/* =========================
+   LOGEMENT
+========================= */
+
+.logement-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.logement-image {
+    overflow: hidden;
+}
+
+.logement-image img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.logement-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    margin-top: 2rem;
+}
+
+.feature {
+    padding: 1rem;
+    background-color: #f5f5f5;
+}
+
+.feature strong {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.description-content p {
+    margin-bottom: 2rem;
+}
+
+/* =========================
+   GALERIE
+========================= */
+
+.gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+.gallery img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+
+/* =========================
+   CABOURG
+========================= */
+
+.destination {
+    background-color: #f7f5f1;
+}
+
+.destination-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+
+/* =========================
+   INFOS PRATIQUES
+========================= */
+
+.info-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding-bottom: 1rem;
+
+    border-bottom: 1px solid #ddd;
+}
+
+
+/* =========================
+   RESERVATION
+========================= */
+
+.reservation {
+    text-align: center;
+    background-color: #222;
+    color: white;
+}
+
+.reservation .section-intro {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.reservation .btn {
+    background-color: white;
+    color: #222;
+    margin-bottom: 2rem;
+}
+
+.reservation-option p {
+    margin-bottom: 1rem;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 3rem 1.5rem;
+
+    background-color: #111;
+    color: white;
+
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
+
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 768px) {
+
+    header {
+        padding: 1rem 3rem;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    #hero {
+        padding: 0;
+    }
+
+    section {
+        padding: 3rem;
+    }
+
+    .logement-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gallery img:first-child {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    .destination-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+}
