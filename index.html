@@ -9,6 +9,7 @@
         content="Villa Beau Soleil, votre séjour à Trouville sur mer. Découvrez notre villa de charme pour des vacances inoubliables en bord de mer.">
     <title>Villa Beau Soleil | Votre séjour à Trouville sur mer</title>
     <link rel="icon" href="./images/image.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 
 <body>
@@ -16,9 +17,10 @@
         <nav class="nav-links">
             <a href="#hero">Accueil</a>
             <a href="#logement">Logement</a>
-            <a href="#description">Description</a>
             <a href="#galerie">Galerie</a>
             <a href="#infos">Infos Pratiques</a>
+            <a href="#disponibilites">Disponibilités</a>
+            <a href="#reservation">Réservation</a>
         </nav>
     </header>
 
@@ -50,16 +52,16 @@
                         </div>
                     </div>
                 </div>
-        </section>
+            </div>
 
-        <section id="description">
-            <div class="container">
-                <h2 class="section-title">Description du logement</h2>
-                <p class="description-content">La Villa Beau Soleil, une maison sur les hauteurs de Trouville sur mer
+            <div class="container description-content">
+                <p>La Villa Beau Soleil, une maison sur les hauteurs de Trouville sur
+                    mer
                     <br> À pied : 15 minutes du centre et de la gare - 25 minutes de la plage
                 </p>
                 <p>Rdc : Une cuisine équipée - un séjour - salle à manger
-                    <br>Étage : 3 chambres (lit 160 - lit 140 - 2 lits superposés + 1 convetible 1 pers) - 1 salle de
+                    <br>Étage : 3 chambres (lit 160 - lit 140 - 2 lits superposés + 1 convetible 1 pers) - 1 salle
+                    de
                     bain avec WC séparé
                     <br>Rez de jardin : 1 chambre (lit 140) - 1 salle de douche avec WC séparé - lave-linge
                     <br>Garage fermé
@@ -118,6 +120,30 @@
             </div>
         </section>
 
+        <section id="localisation">
+            <h3>Localisation</h3>
+            <div id="map" class="location-map">
+            </div>
+        </section>
+
+        <section id="disponibilites">
+
+            <div class="container">
+
+                <h2 class="section-title">
+                    Disponibilités
+                </h2>
+
+                <div class="calendar-container">
+                    <iframe
+                        src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FParis&showPrint=0&showTitle=0&showTabs=0&showCalendars=0&showTz=0&src=NWRkZmMzNDM5ZDgwYWEyMmFmOTIwYWZhZjUyYTQyMTFiZDI2OTI5MTBkNWYzMjZlOWU5NGVhOGQ2MGFkOGUyNUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23a79b8e"
+                        frameborder="0" scrolling="no"></iframe>
+                </div>
+
+            </div>
+
+        </section>
+
         <section id="reservation" class="reservation">
 
             <div class="container">
@@ -140,9 +166,9 @@
                             d'un contact privilégié.
                         </p>
 
-                        <a href="LIEN_RESERVATION_DIRECTE" class="btn">
+                        <button id="openReservationModal" class="btn">
                             Réserver directement
-                        </a>
+                        </button>
                     </div>
 
                     <div class="reservation-option">
@@ -158,13 +184,193 @@
                             Réserver sur Airbnb
                         </a>
                     </div>
+                </div>
 
+                <div class="reservation-contact">
+                    <div>
+                        <strong>📞 Téléphone</strong>
+                        <a href="tel:+33642687628">+33 6 42 68 76 28</a>
+                    </div>
+                    <div>
+                        <strong>✉️ Email</strong>
+                        <a href="mailto:jbaptisteketele@gmail.com">jbaptisteketele@gmail.com</a>
+                    </div>
                 </div>
 
             </div>
 
         </section>
     </main>
+
+    <div class="reservation-modal" id="reservationModal">
+
+        <div class="reservation-modal-content">
+
+            <button type="button" class="reservation-modal-close" id="closeReservationModal" aria-label="Fermer">
+                &times;
+            </button>
+
+            <h2>Votre demande de réservation</h2>
+
+            <p class="modal-intro">
+                Vérifiez les disponibilités puis indiquez-nous
+                les dates souhaitées pour votre séjour.
+            </p>
+
+            <form name="reservation" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+
+                <input type="hidden" name="form-name" value="reservation">
+
+                <!-- Anti-spam -->
+                <p class="hidden">
+                    <label>
+                        Ne pas remplir :
+                        <input name="bot-field">
+                    </label>
+                </p>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="prenom">Prénom</label>
+                        <input type="text" id="prenom" name="prenom" autocomplete="given-name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nom">Nom</label>
+                        <input type="text" id="nom" name="nom" autocomplete="family-name" required>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" autocomplete="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telephone">Téléphone</label>
+                        <input type="tel" id="telephone" name="telephone" autocomplete="tel" required>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="arrivee">Date d'arrivée</label>
+                        <input type="date" id="arrivee" name="date-arrivee" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="depart">Date de départ</label>
+                        <input type="date" id="depart" name="date-depart" required>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Nombre de voyageurs</label>
+
+                    <div class="guest-counter">
+                        <button type="button" class="guest-btn" id="guestMinus" aria-label="Retirer un voyageur">
+                            −
+                        </button>
+
+                        <span class="guest-count" id="guestCount">1</span>
+
+                        <button type="button" class="guest-btn" id="guestPlus" aria-label="Ajouter un voyageur">
+                            +
+                        </button>
+
+                        <input type="hidden" name="voyageurs" id="voyageurs" value="1">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">
+                        Message <span>(facultatif)</span>
+                    </label>
+
+                    <textarea id="message" name="message" rows="4"
+                        placeholder="Une question ou une précision concernant votre séjour ?"></textarea>
+                </div>
+
+                <button type="submit" class="btn">
+                    Envoyer ma demande
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+    <script>
+        const map = L.map('map').setView([49.36086604586232, 0.08451272899221429], 14);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        L.marker([49.35759674527361, 0.09252710627003502])
+            .addTo(map)
+            .bindPopup('Votre séjour à Trouville sur mer');
+    </script>
+
+    <script>
+        const reservationModal = document.getElementById('reservationModal');
+        const openReservationModal = document.getElementById('openReservationModal');
+        const closeReservationModal = document.getElementById('closeReservationModal');
+
+        openReservationModal.addEventListener('click', () => {
+            reservationModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeReservationModal.addEventListener('click', () => {
+            reservationModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        reservationModal.addEventListener('click', (event) => {
+            if (event.target === reservationModal) {
+                reservationModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        const guestMinus = document.getElementById('guestMinus');
+        const guestPlus = document.getElementById('guestPlus');
+        const guestCount = document.getElementById('guestCount');
+        const voyageurs = document.getElementById('voyageurs');
+
+        let guests = 1;
+
+        guestPlus.addEventListener('click', () => {
+            if (guests < 8) {
+                guests++;
+                updateGuests();
+            }
+        });
+
+        guestMinus.addEventListener('click', () => {
+            if (guests > 1) {
+                guests--;
+                updateGuests();
+            }
+        });
+
+        function updateGuests() {
+            guestCount.textContent = guests;
+            voyageurs.value = guests;
+        }
+    </script>
 </body>
 
 </html>
