@@ -4,6 +4,7 @@ let selectedArrival = null;
 let selectedDeparture = null;
 
 const pricePerNight = 257;
+const minimumNights = 2;
 
 // Taxe de séjour : 5 % du prix de la nuitée par personne
 // + 10 % de taxe additionnelle départementale
@@ -287,6 +288,27 @@ function selectDate(dateString) {
             return;
         }
 
+        // Vérifie le nombre minimum de nuits
+        const arrivalDate =
+            new Date(selectedArrival);
+
+        const departureDate =
+            new Date(dateString);
+
+        const numberOfNights =
+            Math.round(
+                (departureDate - arrivalDate) /
+                (1000 * 60 * 60 * 24)
+            );
+
+        if (numberOfNights < minimumNights) {
+
+            alert(
+                `${minimumNights} nuits minimum.`
+            );
+
+            return;
+        }
 
         // Vérifie que toute la période
         // est disponible
