@@ -134,10 +134,48 @@
                     Disponibilités
                 </h2>
 
+                <p id="calendarInstruction" class="calendar-instruction">
+                    Sélectionnez votre date d’arrivée
+                </p>
+
                 <div class="calendar-container">
-                    <iframe
-                        src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FParis&showPrint=0&showTitle=0&showTabs=0&showCalendars=0&showTz=0&src=NWRkZmMzNDM5ZDgwYWEyMmFmOTIwYWZhZjUyYTQyMTFiZDI2OTI5MTBkNWYzMjZlOWU5NGVhOGQ2MGFkOGUyNUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23a79b8e"
-                        frameborder="0" scrolling="no"></iframe>
+
+                    <div class="calendar-header">
+                        <button id="prevMonth" type="button" aria-label="Mois précédent">
+                            ←
+                        </button>
+
+                        <h3 id="currentMonth"></h3>
+
+                        <button id="nextMonth" type="button" aria-label="Mois suivant">
+                            →
+                        </button>
+                    </div>
+
+                    <div class="calendar-weekdays">
+                        <span>Lun</span>
+                        <span>Mar</span>
+                        <span>Mer</span>
+                        <span>Jeu</span>
+                        <span>Ven</span>
+                        <span>Sam</span>
+                        <span>Dim</span>
+                    </div>
+
+                    <div id="calendarDays" class="calendar-days"></div>
+
+                    <div class="calendar-legend">
+                        <div>
+                            <span class="legend-available"></span>
+                            Disponible
+                        </div>
+
+                        <div>
+                            <span class="legend-unavailable"></span>
+                            Indisponible
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -271,6 +309,27 @@
 
                 </div>
 
+                <div id="priceSummary" class="price-summary">
+                    <div class="price-line">
+                        <span>Prix du séjour</span>
+                        <span id="stayPrice">0,00 €</span>
+                    </div>
+
+                    <input type="hidden" name="prix-sejour" id="formStayPrice">
+                    <input type="hidden" name="taxe-sejour" id="formTouristTax">
+                    <input type="hidden" name="total" id="formTotalPrice">
+
+                    <div class="price-line">
+                        <span>Taxe de séjour</span>
+                        <span id="touristTax">0,00 €</span>
+                    </div>
+
+                    <div class="price-line price-total">
+                        <span>Total</span>
+                        <span id="totalPrice">0,00 €</span>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label>Nombre de voyageurs</label>
 
@@ -279,13 +338,13 @@
                             −
                         </button>
 
-                        <span class="guest-count" id="guestCount">1</span>
+                        <span class="guest-count" id="guestCount">4</span>
 
                         <button type="button" class="guest-btn" id="guestPlus" aria-label="Ajouter un voyageur">
                             +
                         </button>
 
-                        <input type="hidden" name="voyageurs" id="voyageurs" value="1">
+                        <input type="hidden" name="voyageurs" id="voyageurs" value="4">
                     </div>
                 </div>
 
@@ -344,33 +403,8 @@
                 document.body.style.overflow = '';
             }
         });
-
-        const guestMinus = document.getElementById('guestMinus');
-        const guestPlus = document.getElementById('guestPlus');
-        const guestCount = document.getElementById('guestCount');
-        const voyageurs = document.getElementById('voyageurs');
-
-        let guests = 1;
-
-        guestPlus.addEventListener('click', () => {
-            if (guests < 8) {
-                guests++;
-                updateGuests();
-            }
-        });
-
-        guestMinus.addEventListener('click', () => {
-            if (guests > 1) {
-                guests--;
-                updateGuests();
-            }
-        });
-
-        function updateGuests() {
-            guestCount.textContent = guests;
-            voyageurs.value = guests;
-        }
     </script>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
